@@ -5,10 +5,275 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sub Fixx | Underground Drum & Bass</title>
   <meta name="description" content="Sub Fixx is a Canadian drum & bass producer creating emotionally driven underground bass music built for dark rooms, loud systems, and connection." />
-  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    :root{
+      --bg: #000000;
+      --text: rgba(255,255,255,0.94);
+      --muted: rgba(255,255,255,0.72);
+      --line: rgba(255,255,255,0.14);
+
+      --panel: rgba(0,0,0,0.62);
+      --panel2: rgba(0,0,0,0.72);
+
+      --shadow: 0 14px 34px rgba(0,0,0,0.70);
+      --radius: 18px;
+      --wrap: 980px;
+
+      --txtShadow: 0 2px 10px rgba(0,0,0,0.90);
+      --bgImage: url("assets/sub-fixx-cyberpunk-underground-bass-website-background-circuitry.png");
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background-color: var(--bg);
+      background-image: var(--bgImage);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.45;
+      text-shadow: var(--txtShadow);
+    }
+
+    /* Readability veil so the background never hides text */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(1200px 800px at 50% 0%, rgba(0,0,0,0.35), rgba(0,0,0,0.80) 70%),
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.86));
+    }
+
+    .wrap{
+      width: min(var(--wrap), calc(100% - 28px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* INTRO OVERLAY */
+    .intro{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .intro__video{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .intro__overlay{
+      position: relative;
+      z-index: 2;
+      width: min(720px, calc(100% - 28px));
+      padding: 22px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .intro__brand{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+    .intro__title{ font-weight: 900; letter-spacing: 0.18em; font-size: clamp(22px, 4.3vw, 40px); }
+    .intro__subtitle{ color: var(--muted); letter-spacing: 0.08em; font-size: 14px; }
+    .intro__button{ margin-top: 10px; }
+
+    .intro.is-fading{ animation: fadeOut 520ms ease forwards; }
+    @keyframes fadeOut{ to{ opacity:0; visibility:hidden; } }
+
+    /* PAGE */
+    main{ position: relative; z-index: 1; }
+    .is-hidden{ display:none !important; }
+
+    /* HERO */
+    .hero{
+      border-bottom: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    .hero__bannerWrap{
+      display:flex;
+      justify-content:center; /* CENTER banner on desktop */
+      padding: 0 14px;
+    }
+    .hero__banner{
+      width: min(1200px, 100%);
+      height: min(52vh, 520px);
+      object-fit: cover;
+      object-position: center;
+      display:block;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow);
+    }
+    .hero__content{
+      padding: 18px 0 22px;
+      text-align:center;
+    }
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 5vw, 56px);
+      letter-spacing: 0.12em;
+    }
+    .hero__tagline{
+      margin: 10px auto 0;
+      max-width: 62ch;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* SECTIONS */
+    .section{
+      padding: 42px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    h2{
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      text-align:center;
+    }
+    .muted{ color: var(--muted); text-align:center; margin: 0 0 18px; }
+
+    /* PANELS */
+    .panel{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .prose{
+      max-width: 78ch;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .prose p{ margin: 0 0 12px; }
+    .prose p:last-child{ margin-bottom:0; }
+
+    /* SOUNDCLOUD EMBED */
+    .embed{
+      margin: 18px auto 0;
+      max-width: 980px;
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* BUTTONS / LINKS */
+    .actions{ display:flex; justify-content:center; margin-top: 14px; }
+    .btn, .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.40);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 800;
+    }
+    .btn:hover, .pill:hover{ background: rgba(0,0,0,0.55); }
+    .btn--ghost{ background: rgba(0,0,0,0.22); }
+
+    /* PHOTOS (smaller thumbnails) */
+    .grid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    .card{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
+      display:block;
+    }
+    .card img{
+      width:100%;
+      height: 140px;
+      object-fit: cover;
+      display:block;
+    }
+    @media (min-width: 720px){
+      .grid{ grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+      .card img{ height: 160px; }
+    }
+    @media (min-width: 1024px){
+      .grid{ grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+      .card img{ height: 170px; }
+    }
+
+    /* SOCIAL */
+    .links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content:center;
+    }
+
+    /* LIST */
+    .list{
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      list-style: none;
+    }
+    .list li{
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      text-align:center;
+    }
+    .list li:last-child{ border-bottom:none; }
+
+    /* RELEASES */
+    .release-list{
+      max-width: 640px;
+      margin: 0 auto;
+      overflow:hidden;
+    }
+    .release{
+      display:flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .release:last-child{ border-bottom:none; }
+    .release__date{ color: var(--muted); font-variant-numeric: tabular-nums; }
+    .release__title{ font-weight: 900; letter-spacing: 0.02em; }
+
+    /* FOOTER */
+    footer{ padding: 26px 0 36px; }
+    .footer__line{ text-align:center; color: var(--muted); font-size: 14px; }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px){
+      .hero__banner{ height: 38vh; }
+      .section{ padding: 34px 0; }
+    }
+  </style>
 </head>
 
 <body>
+
   <!-- INTRO / LOGO ANIMATION OVERLAY -->
   <div id="intro" class="intro" aria-hidden="false">
     <video
@@ -33,7 +298,8 @@
   </div>
 
   <!-- MAIN PAGE -->
-  <main id="page" class="page is-hidden" aria-hidden="true">
+  <main id="page" class="is-hidden" aria-hidden="true">
+
     <!-- HERO -->
     <header class="hero">
       <div class="hero__bannerWrap">
@@ -81,24 +347,13 @@
         <h2>Bio</h2>
 
         <div class="panel prose">
-          <p>
-            Sub Fixx is a Canadian drum &amp; bass producer creating emotionally driven underground bass music built for dark rooms, loud systems, and connection.
-          </p>
+          <p>Sub Fixx is a Canadian drum &amp; bass producer creating emotionally driven underground bass music built for dark rooms, loud systems, and connection.</p>
 
-          <p>
-            Rooted in UK bass culture and shaped by years of multi-genre influence, his sound blends weight, tension, and atmosphere with deep low-end pressure.
-            Every track is designed to hit with intent — not just to move bodies, but to pull people into the moment.
-          </p>
+          <p>Rooted in UK bass culture and shaped by years of multi-genre influence, his sound blends weight, tension, and atmosphere with deep low-end pressure. Every track is designed to hit with intent — not just to move bodies, but to pull people into the moment.</p>
 
-          <p>
-            The journey started in 1999 with his first set of turntables — long nights digging, learning, and building taste the hard way.
-            After years of experimenting across sounds and scenes, he fully committed in the last couple of years when he switched to drum &amp; bass —
-            a move that became a true game changer and sharpened the direction into something focused, heavy, and honest.
-          </p>
+          <p>The journey started in 1999 with his first set of turntables — long nights digging, learning, and building taste the hard way. After years of experimenting across sounds and scenes, he fully committed in the last couple of years when he switched to drum &amp; bass — a move that became a true game changer and sharpened the direction into something focused, heavy, and honest.</p>
 
-          <p>
-            This is music for immersive dancefloors, late nights, and shared energy.
-          </p>
+          <p>This is music for immersive dancefloors, late nights, and shared energy.</p>
         </div>
       </div>
     </section>
@@ -147,9 +402,9 @@
         <h2>Social</h2>
 
         <div class="links">
-          <a class="link" href="https://soundcloud.com/subfixx" target="_blank" rel="noopener">SoundCloud</a>
-          <a class="link" href="https://www.facebook.com/Subfixx" target="_blank" rel="noopener">Facebook (Sub Fixx)</a>
-          <a class="link" href="https://www.facebook.com/dyrtiesoundrecords" target="_blank" rel="noopener">Facebook (DSP Records)</a>
+          <a class="pill" href="https://soundcloud.com/subfixx" target="_blank" rel="noopener">SoundCloud</a>
+          <a class="pill" href="https://www.facebook.com/Subfixx" target="_blank" rel="noopener">Facebook (Sub Fixx)</a>
+          <a class="pill" href="https://www.facebook.com/dyrtiesoundrecords" target="_blank" rel="noopener">Facebook (DSP Records)</a>
         </div>
       </div>
     </section>
@@ -196,13 +451,58 @@
       </div>
     </section>
 
-    <footer class="footer">
+    <footer>
       <div class="wrap">
         <div class="footer__line">© <span id="year"></span> Sub Fixx</div>
       </div>
     </footer>
+
   </main>
 
-  <script src="js/main.js"></script>
+  <script>
+    (() => {
+      const intro = document.getElementById("intro");
+      const page = document.getElementById("page");
+      const video = document.getElementById("introVideo");
+      const btn = document.getElementById("introPlayBtn");
+      const year = document.getElementById("year");
+
+      year.textContent = new Date().getFullYear();
+
+      const showPage = () => {
+        intro.classList.add("is-fading");
+        setTimeout(() => {
+          intro.style.display = "none";
+          page.classList.remove("is-hidden");
+          page.setAttribute("aria-hidden", "false");
+        }, 520);
+      };
+
+      const tryAutoplay = async () => {
+        try {
+          video.muted = true;
+          video.playsInline = true;
+          await video.play();
+          btn.style.display = "none";
+        } catch (e) {
+          btn.style.display = "inline-flex";
+        }
+      };
+
+      video.addEventListener("ended", showPage);
+      video.addEventListener("error", showPage);
+
+      btn.addEventListener("click", async () => {
+        try {
+          await video.play();
+          btn.style.display = "none";
+        } catch (e) {
+          showPage();
+        }
+      });
+
+      tryAutoplay();
+    })();
+  </script>
 </body>
 </html>
