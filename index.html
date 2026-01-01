@@ -8,68 +8,52 @@
 
   <style>
     :root{
-      --bg: #000;
-      --text: rgba(255,255,255,0.94);
-      --muted: rgba(255,255,255,0.72);
-      --line: rgba(255,255,255,0.14);
+      --bg:#000;
+      --text:rgba(255,255,255,0.94);
+      --muted:rgba(255,255,255,0.72);
+      --panel:rgba(0,0,0,0.62);
+      --panel2:rgba(0,0,0,0.72);
+      --shadow:0 14px 34px rgba(0,0,0,0.70);
+      --radius:18px;
 
-      --panel: rgba(0,0,0,0.62);
-      --panel2: rgba(0,0,0,0.72);
+      --wrap:1180px;
 
-      --shadow: 0 14px 34px rgba(0,0,0,0.70);
-      --radius: 18px;
+      --txtShadow:0 2px 10px rgba(0,0,0,0.90);
+      --bgImage:url("assets/sub-fixx-underground-bass-music-website-background.png");
 
-      /* CONTENT WIDTH */
-      --wrap: 980px;
+      --heroLogoMaxWDesktop:560px;
+      --heroLogoMaxWMobile:400px;
 
-      --txtShadow: 0 2px 10px rgba(0,0,0,0.90);
-
-      /* BACKGROUND IMAGE */
-      --bgImage: url("assets/sub-fixx-underground-bass-music-website-background.png");
-
-      /* HERO LOGO */
-      --heroLogoMaxWDesktop: 520px;   /* BIGGER TOP LOGO */
-      --heroLogoMaxWMobile: 380px;
-
-      /* SOUNDCloud EMBED WIDTH (NARROWER / UNIFORM) */
-      --embedMaxWDesktop: 840px;
-      --embedMaxWMobile: 96vw;
-
-      /* TEXT SCALE */
-      --baseFontScale: 150%;         /* keep your current overall scale */
-      --underEmbedScale: 1.30;       /* +30% for the follow button / under-embed area */
+      --baseFontScale:150%;
+      --underEmbedScale:1.30;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
     body{
       margin:0;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       line-height:1.45;
+      font-size:var(--baseFontScale);
+      text-shadow:var(--txtShadow);
 
-      /* GLOBAL TEXT SCALE (your existing setting) */
-      font-size: var(--baseFontScale);
-
-      text-shadow: var(--txtShadow);
-
-      background-image: var(--bgImage);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top;
-      background-attachment: fixed;
-      position: relative;
+      background-image:var(--bgImage);
+      background-repeat:no-repeat;
+      background-size:cover;
+      background-position:center top;
+      background-attachment:fixed;
+      position:relative;
     }
 
-    /* readability veil */
     body::before{
       content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
       background:
         radial-gradient(1200px 800px at 50% 0%,
           rgba(0,0,0,0.12),
@@ -79,321 +63,180 @@
           rgba(0,0,0,0.70));
     }
 
-    /* content above */
-    .wrap, main, header, section, footer{ position: relative; z-index: 1; }
-
-    .wrap{
-      width: min(var(--wrap), calc(100% - 28px));
-      margin: 0 auto;
-    }
+    .wrap,main,header,section,footer{position:relative;z-index:1}
+    .wrap{width:min(var(--wrap),calc(100% - 28px));margin:0 auto}
 
     /* INTRO */
-    .intro{
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: #000;
-      overflow: hidden;
-      display: block;
-    }
-    .intro__video{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .intro{position:fixed;inset:0;z-index:9999;background:#000;overflow:hidden;display:block}
+    .intro__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .intro__overlay{
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 18px 16px calc(22px + env(safe-area-inset-bottom, 0px));
-      background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.78));
-      text-align: center;
-      gap: 10px;
+      position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+      padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));
+      background:linear-gradient(to bottom,rgba(0,0,0,0.05),rgba(0,0,0,0.55) 70%,rgba(0,0,0,0.78));
+      text-align:center;gap:10px
     }
     .intro__brand{
-      width: min(720px, calc(100% - 28px));
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: var(--radius);
-      background: rgba(0,0,0,0.40);
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow);
+      width:min(820px,calc(100% - 28px));
+      padding:14px 16px;border:1px solid rgba(255,255,255,0.14);
+      border-radius:var(--radius);background:rgba(0,0,0,0.40);
+      backdrop-filter:blur(8px);box-shadow:var(--shadow)
     }
-    .intro__title{
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      font-size: clamp(20px, 4.2vw, 38px);
-      margin: 0;
-    }
-    .intro__subtitle{
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      font-size: 14px;
-      margin-top: 6px;
-    }
-    .intro__button{
-      width: min(360px, calc(100% - 28px));
-      margin: 0;
-    }
+    .intro__title{font-weight:900;letter-spacing:0.18em;font-size:clamp(20px,4.2vw,38px);margin:0}
+    .intro__subtitle{color:var(--muted);letter-spacing:0.08em;font-size:14px;margin-top:6px}
+    .intro__button{width:min(360px,calc(100% - 28px));margin:0}
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.45);
-      color: var(--text);
-      text-decoration:none;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: var(--shadow);
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);
+      background:rgba(0,0,0,0.45);color:var(--text);text-decoration:none;font-weight:800;cursor:pointer;
+      box-shadow:var(--shadow)
     }
-    .btn:hover{ background: rgba(0,0,0,0.60); }
-    .btn--ghost{ background: rgba(0,0,0,0.28); }
+    .btn:hover{background:rgba(0,0,0,0.60)}
+    .btn--ghost{background:rgba(0,0,0,0.28)}
 
-    .intro.is-fading{ animation: fadeOut 520ms ease forwards; }
-    @keyframes fadeOut{ to{ opacity:0; visibility:hidden; } }
+    .intro.is-fading{animation:fadeOut 520ms ease forwards}
+    @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-    /* PAGE */
-    main{ position: relative; z-index: 1; }
-    .is-hidden{ display:none !important; }
+    main{position:relative;z-index:1}
+    .is-hidden{display:none !important}
 
     /* HERO */
-    .hero{
-      padding-top: 54px;
-      text-align: center;
-    }
-
-    /* ADD: banner frame so logo sizes consistently */
+    .hero{padding-top:54px;text-align:center}
     .hero__bannerFrame{
-      width: min(var(--wrap), calc(100% - 28px));
-      margin: 0 auto;
-      padding: 18px 0 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width:min(var(--wrap),calc(100% - 28px));
+      margin:0 auto;
+      padding:18px 0 10px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
-
-    /* BIGGER LOGO, NO DISTORTION */
     .hero__bannerImg{
-      width: min(var(--heroLogoMaxWDesktop), 92vw);
-      height: auto;
-      display: block;
-      object-fit: contain;
-      filter: saturate(1.12) contrast(1.08) brightness(1.05);
+      width:min(var(--heroLogoMaxWDesktop),92vw);
+      height:auto;
+      display:block;
+      object-fit:contain;
+      filter:saturate(1.12) contrast(1.08) brightness(1.05);
     }
 
-    .hero__content{
-      padding: 12px 0 12px;
-      text-align: center;
-    }
-
+    .hero__content{padding:12px 0 12px;text-align:center}
     .hero__contentInner{
-      position: relative;
-      display: inline-block;
-      padding: 10px 14px;
-      max-width: min(920px, calc(100% - 28px));
+      position:relative;
+      display:inline-block;
+      padding:10px 14px;
+      max-width:min(980px,calc(100% - 28px));
     }
-
     .hero__contentInner::before{
       content:"";
-      position: absolute;
-      inset: -8px;
-      z-index: -1;
-      background: radial-gradient(60% 120% at 50% 50%,
-        rgba(0,0,0,0.62),
-        rgba(0,0,0,0));
+      position:absolute;
+      inset:-8px;
+      z-index:-1;
+      background:radial-gradient(60% 120% at 50% 50%,rgba(0,0,0,0.62),rgba(0,0,0,0));
     }
-
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 5vw, 56px);
-      letter-spacing: 0.12em;
-    }
-
-    .hero__tagline{
-      margin: 10px auto 0;
-      max-width: 62ch;
-      color: rgba(255,255,255,0.88);
-      font-size: 16px;
-    }
+    h1{margin:0;font-size:clamp(28px,5vw,56px);letter-spacing:0.12em}
+    .hero__tagline{margin:10px auto 0;max-width:70ch;color:rgba(255,255,255,0.88);font-size:16px}
 
     /* SECTIONS */
-    .section{
-      padding: 42px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-    h2{
-      margin: 0 0 12px;
-      font-size: 22px;
-      letter-spacing: 0.06em;
-      text-align:center;
-    }
-    .muted{
-      color: var(--muted);
-      text-align:center;
-      margin: 0 0 18px;
-      font-size: 16px;
-    }
+    .section{padding:42px 0;border-bottom:1px solid rgba(255,255,255,0.10)}
+    h2{margin:0 0 12px;font-size:22px;letter-spacing:0.06em;text-align:center}
+    .muted{color:var(--muted);text-align:center;margin:0 0 18px;font-size:16px}
 
     .panel{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      width:100%;
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-    .prose{
-      max-width: 78ch;
-      margin: 0 auto;
-      padding: 18px;
-      font-size: 16px;
-    }
-    .prose p{ margin: 0 0 12px; }
-    .prose p:last-child{ margin-bottom:0; }
 
-    /* NARROWER SOUNDCLOUD EMBED */
-    .embed{
-      margin: 18px auto 0;
-      width: min(var(--embedMaxWDesktop), calc(100% - 0px));
-      background: var(--panel2);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: var(--radius);
+    /* NEW: YouTube section styling (full width like Photos) */
+    .videoCard{
+      width:100%;
+      background:var(--panel2);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:var(--radius);
       overflow:hidden;
-      box-shadow: var(--shadow);
+      box-shadow:var(--shadow);
+    }
+    .videoFrame{
+      width:100%;
+      aspect-ratio:16 / 9;
+      border:0;
+      display:block;
     }
 
-    /* UNDER-EMBED AREA (FOLLOW BUTTON) +30% */
+    .prose{width:100%;margin:0 auto;padding:18px 22px;font-size:16px}
+    .prose p{margin:0 0 12px}
+    .prose p:last-child{margin-bottom:0}
+
+    .embed{
+      margin:18px auto 0;
+      width:100%;
+      background:var(--panel2);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
     .actions{
       display:flex;
       justify-content:center;
-      margin-top: 14px;
-      transform: scale(var(--underEmbedScale));
-      transform-origin: top center;
+      margin-top:14px;
+      transform:scale(var(--underEmbedScale));
+      transform-origin:top center;
     }
 
-    .grid{
-      display:grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
+    .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
     .card{
-      border-radius: 14px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.35);
-      box-shadow: var(--shadow);
-      display:block;
+      border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);
+      background:rgba(0,0,0,0.35);box-shadow:var(--shadow);display:block
     }
-    .card img{
-      width:100%;
-      height: 140px;
-      object-fit: cover;
-      display:block;
+    .card img{width:100%;height:140px;object-fit:cover;display:block}
+    @media (min-width:720px){
+      .grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+      .card img{height:160px}
     }
-    @media (min-width: 720px){
-      .grid{ grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
-      .card img{ height: 160px; }
-    }
-    @media (min-width: 1024px){
-      .grid{ grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
-      .card img{ height: 170px; }
+    @media (min-width:1024px){
+      .grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+      .card img{height:170px}
     }
 
-    .links{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content:center;
-    }
-
+    .links{width:100%;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
     .pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.40);
-      color: var(--text);
-      text-decoration:none;
-      font-weight: 800;
-      font-size: 15px;
+      display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);background:rgba(0,0,0,0.40);
+      color:var(--text);text-decoration:none;font-weight:800;font-size:15px
     }
-    .pill:hover{ background: rgba(0,0,0,0.55); }
+    .pill:hover{background:rgba(0,0,0,0.55)}
 
-    .list{
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 12px 18px;
-      list-style: none;
-      font-size: 16px;
-    }
-    .list li{
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      text-align:center;
-    }
-    .list li:last-child{ border-bottom:none; }
+    .list{width:100%;margin:0 auto;padding:12px 18px;list-style:none;font-size:16px}
+    .list li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.10);text-align:center}
+    .list li:last-child{border-bottom:none}
 
-    .release-list{
-      max-width: 640px;
-      margin: 0 auto;
-      overflow:hidden;
-      font-size: 16px;
-    }
-    .release{
-      display:flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-    .release:last-child{ border-bottom:none; }
-    .release__date{ color: var(--muted); font-variant-numeric: tabular-nums; }
-    .release__title{ font-weight: 900; letter-spacing: 0.02em; }
+    .release-list{width:100%;margin:0 auto;overflow:hidden;font-size:16px}
+    .release{display:flex;justify-content:space-between;gap:14px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.10)}
+    .release:last-child{border-bottom:none}
+    .release__date{color:var(--muted);font-variant-numeric:tabular-nums}
+    .release__title{font-weight:900;letter-spacing:0.02em}
 
-    /* CONTACT */
-    .contactBox{
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 18px;
-      text-align: center;
-    }
-    .contactBox a{
-      color: rgba(255,255,255,0.92);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.22);
-    }
-    .contactBox a:hover{
-      border-bottom-color: rgba(255,255,255,0.55);
-    }
-    .contactLine{
-      margin: 10px 0 0;
-      color: var(--muted);
-    }
+    .contactBox{width:100%;margin:0 auto;padding:18px 22px;text-align:center}
+    .contactBox a{color:rgba(255,255,255,0.92);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.22)}
+    .contactBox a:hover{border-bottom-color:rgba(255,255,255,0.55)}
+    .contactLine{margin:10px 0 0;color:var(--muted)}
 
-    footer{ padding: 26px 0 36px; }
-    .footer__line{ text-align:center; color: var(--muted); font-size: 14px; }
+    footer{padding:26px 0 36px}
+    .footer__line{text-align:center;color:var(--muted);font-size:14px}
 
-    @media (max-width: 480px){
-      .section{ padding: 34px 0; }
-      .hero{ padding-top: 18px; }
-      .hero__bannerFrame{ padding: 14px 0 8px; }
-      .hero__bannerImg{ width: min(var(--heroLogoMaxWMobile), 92vw); }
-      .embed{ width: min(var(--embedMaxWMobile), 100%); }
-      .actions{ transform: scale(1.18); } /* slightly less aggressive on tiny screens */
+    @media (max-width:480px){
+      .section{padding:34px 0}
+      .hero{padding-top:18px}
+      .hero__bannerFrame{padding:14px 0 8px}
+      .hero__bannerImg{width:min(var(--heroLogoMaxWMobile),92vw)}
+      .actions{transform:scale(1.18)}
+      .prose,.contactBox{padding:16px 16px}
     }
-
-    @media (max-width: 768px){
-      body{ background-attachment: scroll; }
+    @media (max-width:768px){
+      body{background-attachment:scroll}
     }
   </style>
 </head>
@@ -429,7 +272,7 @@
         <img
           class="hero__bannerImg"
           src="assets/sub-fixx-underground-bass-music-logo-transparent_web_fire.png"
-          alt="Sub Fixx underground bass music cyberpunk streaming banner"
+          alt="Sub Fixx underground bass music logo"
         />
       </div>
 
@@ -442,6 +285,29 @@
         </div>
       </div>
     </header>
+
+    <!-- NEW: YouTube full-length mix FIRST under hero -->
+    <section class="section" id="youtube">
+      <div class="wrap">
+        <h2>Dark Side Conversion Vol. 05 (Full Mix)</h2>
+        <p class="muted">Full-length visualizer now live on YouTube.</p>
+
+        <div class="videoCard">
+          <!--
+            IMPORTANT: Autoplay on load requires muted=true in most browsers.
+            If you want sound by default, it WILL require a user click.
+          -->
+          <iframe
+            class="videoFrame"
+            src="https://www.youtube.com/embed/rhp6jYRPgu8?autoplay=1&mute=1&playsinline=1&rel=0"
+            title="Dark Side Conversion Vol. 05 — Sub Fixx"
+            allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
 
     <section class="section" id="soundcloud">
       <div class="wrap">
