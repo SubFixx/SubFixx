@@ -231,11 +231,14 @@
     }
 
     .hero__bannerImg{
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      border-radius: 16px;
+  width: 100%;
+  height: auto;
+  max-height: 50vh; /* shrinks banner ~50% visually */
+  object-fit: contain;
+  display: block;
+  border-radius: 16px;
+}
+
 
       -webkit-mask-image: linear-gradient(to left,
         rgba(0,0,0,0.78) 0%,
