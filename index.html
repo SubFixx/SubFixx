@@ -71,23 +71,6 @@
           rgba(0,0,0,0.70));
     }
 
-    /* glow boost layer */
-    body::after{
-      content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-
-      background-image: var(--bgImage);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top;
-
-      opacity: 0.92;
-      mix-blend-mode: screen;
-      filter: brightness(1.55) contrast(1.32) saturate(1.70) blur(0.45px);
-    }
 
     /* content above */
     .wrap, main, header, section, footer{ position: relative; z-index: 1; }
