@@ -1,62 +1,146 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Sub Fixx – EPK</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Sub Fixx – EPK</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#0c0c12;
-color:#ffffff;
-}
+  <style>
+    :root{
+      --bg:#0c0c12;
+      --nav:#111118;
+      --card:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.12);
+      --text:#ffffff;
+      --accent:#ff5a1f;
+    }
 
-/* Top Navigation */
-.nav{
-width:100%;
-background:#111118;
-padding:15px 30px;
-box-sizing:border-box;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid rgba(255,255,255,0.1);
-}
+    *{ box-sizing:border-box; }
 
-.nav a{
-color:#ffffff;
-text-decoration:none;
-font-weight:bold;
-font-size:14px;
-}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
 
-.nav a:hover{
-color:#ff5a1f;
-}
+    /* Top Navigation */
+    .nav{
+      width:100%;
+      background:var(--nav);
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid var(--border);
+    }
 
-/* Page Content */
-.wrapper{
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:calc(100vh - 60px);
-padding:40px;
-box-sizing:border-box;
-text-align:center;
-}
+    .nav a{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:0.2px;
+    }
 
-.container{
-background:rgba(255,255,255,0.05);
-padding:50px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,0.1);
-max-width:600px;
-width:100%;
-}
+    .nav a:hover{ color:var(--accent); }
 
-h1{
-margin-top:0;
-margin-botto
+    /* Page Content */
+    .wrapper{
+      min-height:calc(100vh - 56px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 16px;
+      text-align:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:640px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:44px 28px;
+    }
+
+    h1{
+      margin:0 0 10px 0;
+      font-size:26px;
+      line-height:1.2;
+    }
+
+    p{
+      margin:0 0 26px 0;
+      opacity:0.9;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 18px;
+      border-radius:12px;
+      font-weight:800;
+      text-decoration:none;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.06);
+      color:var(--text);
+      transition:transform 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover{
+      border-color:rgba(255,255,255,0.25);
+      background:rgba(255,255,255,0.10);
+    }
+
+    .btn:active{ transform:translateY(1px); }
+
+    .btn.primary{
+      background:var(--accent);
+      border-color:rgba(0,0,0,0.15);
+      color:#0b0b10;
+    }
+
+    .btn.primary:hover{
+      background:#ff6a3a;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    /* Mobile spacing */
+    @media (max-width:520px){
+      .nav{ padding:14px 16px; }
+      .container{ padding:36px 18px; }
+      h1{ font-size:22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <a href="YOUR_HOME_URL_HERE">← Home</a>
+    <span style="opacity:.7;font-size:13px;font-weight:700;">EPK</span>
+  </div>
+
+  <main class="wrapper">
+    <section class="container">
+      <h1>Sub Fixx – EPK</h1>
+      <p>Download the Electronic Press Kit below.</p>
+
+      <div class="actions">
+        <a class="btn primary" href="YOUR_EPK_FILE_URL_HERE" target="_blank" rel="noopener noreferrer">
+          Download EPK (PDF)
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
